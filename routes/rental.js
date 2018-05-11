@@ -325,11 +325,11 @@ router.post('/upload', upload.single('data'), function (req, res, next) {
 });
 
 router.post('/example', async function (req, res) {
-    await generateRentals(`./12_2017.csv`, PAID);
-    await generateRentals(`./01_2018.csv`, PAID);
-    await generateRentals(`./02_2018.csv`, PAID);
-    await generateRentals(`./03_2018.csv`, PAID);
-    await generateRentals(`./04_2018.csv`, PENDING);
+    await generateRentals(`./data/12_2017.csv`, PAID);
+    await generateRentals(`./data/01_2018.csv`, PAID);
+    await generateRentals(`./data/02_2018.csv`, PAID);
+    await generateRentals(`./data/03_2018.csv`, PAID);
+    await generateRentals(`./data/04_2018.csv`, PENDING);
     res.json("example generated");
 });
 
