@@ -7,7 +7,7 @@ const state = {
 
 exports.connect = function () {
     if (state.mongoose) return mongoose;
-    mongoose.connect('mongodb://localhost/apartment_management');
+    mongoose.connect(`mongodb://${process.env.MONGO_URI}/apartment_management`);
     state.mongoose = mongoose;
     return mongoose;
 }
