@@ -17,8 +17,9 @@ const UPLOAD_PATH = require('variables').UPLOAD_PATH;
 const cleanFolder = require('utils').cleanFolder;
 cleanFolder(UPLOAD_PATH);
 
+const corsPort = process.env.CORS_PORT || 4200;
 const corsOptions = {
-  origin: 'http://localhost',
+  origin: `http://localhost:${corsPort}`,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
 };
 
