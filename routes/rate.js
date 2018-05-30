@@ -2,6 +2,18 @@ const express = require('express');
 const router = express.Router();
 const Rate = require('../models/rate.model');
 
+router.get('/all', function (req, res) {
+    Rate.model.find().exec()
+        .then(rates => {
+            data = {
+                data: rates,
+                count: rates.length
+            };
+            res.json(data);
+        })
+        .catch(err => res.status(500).send(`Cannot get rates because ${err}`))
+});
+
 router.get('/:id', function (req, res) {
     id = req.params["id"];
     Rate.model.findById(id).exec()
