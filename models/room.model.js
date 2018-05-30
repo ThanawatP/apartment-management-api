@@ -59,14 +59,12 @@ exports.getAvailableRooms = function () {
     };
     return Room.find(query).exec()
         .then(rooms => {
-            console.log("Available rooms count: " + rooms.length);
             return Promise.resolve(rooms);
         })
         .catch(err => Promise.reject("Cannot find available rooms because " + err));
 }
 
 exports.resetReading = function () {
-    console.log("reseting reading all rooms");
     return Room.find().exec()
         .then(rooms => {
             for (let room of rooms) {

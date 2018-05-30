@@ -19,7 +19,6 @@ router.get('/', async function (req, res) {
             $regex: `${term}`
         };
     }
-    console.log(`query: ${JSON.stringify(query)}`);
     try {
         const [rooms, count] = await Promise.all([
             Room.model.find(query).limit(limit).skip((limit * page) - limit).lean().exec(),
@@ -45,13 +44,9 @@ router.get('/all', async function (req, res) {
             $regex: `${term}`
         };
     }
-    console.log(`query: ${JSON.stringify(query)}`);
     Room.model.find(query).exec(function (err, rooms) {
         if (err) return "error";
         if (rooms != null) {
-            for (let room of rooms) {
-                console.log("id: " + room.id + " | room id: " + room.user.id);
-            }
             res.json(rooms);
         } else {
             res.sendStatus(404).json([]);

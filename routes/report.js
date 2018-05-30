@@ -7,7 +7,6 @@ router.post('/generate', function (req, res) {
     if (!billPeriod || billPeriod.trim() == "") {
         return res.status(400).send("Field bill period cannot be empty.");
     }
-    console.log(`generating report of bill period ${billPeriod}`);
     Rental.model.find({
             "bill_period": billPeriod
         }).exec()

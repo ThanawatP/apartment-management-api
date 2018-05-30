@@ -51,7 +51,6 @@ router.post('/', function (req, res) {
         .then(user => {
             if (roomId != "") {
                 Room.update(roomId, user.id, user.name, "")
-                    .then(room => console.log("room id " + roomId + " is updated."))
                     .catch(err => console.log("Cannot update user to room id " + roomId + " because " + err));
             }
             res.json(user);
@@ -106,7 +105,6 @@ router.post('/:user_id', function (req, res) {
                             }
                             if (roomId) {
                                 Room.update(roomId.trim(), updatedUser.id, updatedUser.name, "")
-                                    .then(room => console.log("room id " + roomId + " is updated."))
                                     .catch(err => console.log("Cannot update user to room id " + roomId + " because " + err));
                             }
                         }

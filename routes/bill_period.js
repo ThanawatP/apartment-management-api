@@ -8,13 +8,9 @@ router.get('/all', function (req, res) {
         }).exec()
         .then(billPeriods => {
             if (billPeriods) {
-                for (let billPeriod of billPeriods) {
-                    console.log(`bill period: ${billPeriod}`);
-                }
                 res.json(billPeriods);
             } else {
                 let msg = 'Bill periods are not found.';
-                console.log(msg);
                 res.sendStatus(404).send(msg);
             }
         })

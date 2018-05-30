@@ -99,15 +99,11 @@ router.get('/list', async function (req, res) {
         query["status"] = status;
     }
 
-    console.log(`query: ${JSON.stringify(query)}`);
     try {
         const [rentals, count] = await Promise.all([
             Rental.model.find(query).limit(limit).skip((limit * page) - limit).lean().exec(),
             Rental.model.count(query)
         ]);
-        for (let rental of rentals) {
-            console.log(`room id: ${rental.room_id} | user id: ${rental.user_id} | total: ${rental.total}`);
-        }
         data = {
             data: rentals,
             count: rentals.length,
@@ -182,7 +178,6 @@ router.post('/', function (req, res) {
                                 }
                             };
                             Room.model.findByIdAndUpdate(roomID, body).exec()
-                                .then(() => console.log(`updated room id ${roomID}`))
                                 .catch(err => console.log(err));
                             res.json(rental);
                         })
@@ -282,7 +277,6 @@ function generateRentals(filepath, status) {
                                 });
                                 BillPeriod.model.create(billPeriodData)
                                     .then(() => {
-                                        console.log(`finish create bill period ${billPeriod}`);
                                         Rental.model.insertMany(rentals)
                                             .then(() => {
                                                 for (let room of rooms) {
@@ -295,7 +289,6 @@ function generateRentals(filepath, status) {
                                                         }
                                                     };
                                                     Room.model.findByIdAndUpdate(roomID, body).exec()
-                                                        .then(() => console.log(`updated room id ${roomID}`))
                                                         .catch(err => console.log(err));
                                                 }
                                                 const data = {
