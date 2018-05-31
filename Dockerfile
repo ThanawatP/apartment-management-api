@@ -9,5 +9,7 @@ COPY . /usr/src/app
 ENV MONGO_URI localhost
 ENV CORS_PORT 4200
 
+EXPOSE 3001
+
 RUN chmod +x ./run.sh
 CMD ["./run.sh"]
